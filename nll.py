@@ -1,5 +1,4 @@
 import numpy as np
-
 from iminuit import Minuit, describe
 from iminuit.util import make_func_code
 
@@ -15,12 +14,11 @@ class NLL(object):
         model: The function that we will minimise the nll of.
         x: The array-like data.
     """
-
     errordef = Minuit.LIKELIHOOD
 
-    def __init__(self, model, x):
-        self.model = model
+    def __init__(self, x, model):
         self.x = x
+        self.model = model
 
         # fake the function signature
         self.func_code = make_func_code(describe(self.model)[1:])
